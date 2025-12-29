@@ -11,15 +11,15 @@ class Database
   {
     try {
       $this->conn = new PDO("mysql:host=$this->host;dbname=$this->database", $this->username, $this->password);
-
-
+      
     } catch (PDOException $e) {
-
+           echo 'error'.$e->getMessage();
     }
 
     return $this->conn;
   }
 }
-
+$data=new Database();
+   var_dump($data->getConnection()) ;
 
 ?>

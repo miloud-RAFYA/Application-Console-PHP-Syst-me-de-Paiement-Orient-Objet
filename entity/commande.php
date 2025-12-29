@@ -1,43 +1,35 @@
 <?php
 require_once __DIR__ . "/../entity/client.php";
-class commade
+class commande
 {
 
-    public $montant_total;
-    public $statut;
-    public client $client;
+    private $id;
+    private  $montant_total;
+    private $statut;
+    private client $client;
 
 
-    public function __construct($montant_total, $statut,client $client)
+    public function __construct($montant_total, $statut)
     {
         $this->montant_total = $montant_total;
         $this->statut = $statut;
-        $this->client =$client;
     }
-
-    public function setmontat_total($montant_total)
+    public function setId($id)
     {
-        $this->montant_total = $montant_total;
-
+        $this->id = $id;
     }
-    public function setstatut($statut)
+    public function setClient($client)
     {
-        $this->statut = $statut;
+        $this->client = $client;
     }
-    public function getmontat_total()
+    public function __get($name)
     {
-        return$this->montant_total;
+        return$this->$name;
 
-    }
-    public function getstatut()
-    {
-        return$this->statut;
-
-    }
-   
+    }  
     public function __toString()
     {
-        return "le montat total de commande est :" . $this->montant_total . " et statut :" . $this->statut;
+        return "le nemuro est : ".$this->id."  le montat total  est : " . $this->montant_total . " et statut : " . $this->statut."de client : ".$this->client->name."\n";
     }
 }
 

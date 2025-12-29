@@ -16,7 +16,7 @@ class ClientRepository
 
     public $query;
 
-    public function fetchClient($query, $param = [])
+    public function queryClient($query, $param = [])
     {
         if (empty($param)) {
             $this->query = $this->conn->prepare($query);
@@ -29,7 +29,10 @@ class ClientRepository
             return $this->query->fetchAll(PDO::FETCH_ASSOC);
         }
     }
-
+    public function fetchClient(){
+        return $this->queryClient('select *from users');
+    }
+    
     public function countRows(): int
     {
         return $this->query->rowcount();
@@ -48,7 +51,6 @@ class ClientRepository
     }
     public function fetchAll($stmt)
     {
-
         $users = $stmt->fetchAll(PDO::FETCH_COLUMN) ?: [];
         return $users;
     }
@@ -60,10 +62,5 @@ class ClientRepository
 
 
 
-$clientRep = new ClientRepository();
-$res = $clientRep->fetchClient('select *from users');
-foreach ($res as $row) {
-$client=new client( $row['name'],$row['email']);
-echo $client;
-};
+
 ?>
